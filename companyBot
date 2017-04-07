@@ -1,0 +1,9 @@
+import java.io.*;
+  
+public class companyBot extends Umabel{
+  public static void main (String str[]) throws IOException{
+    Umabel chatBot = new Umabel();
+    chatBot.setSize(600, 500);
+    chatBot.setVisible(true);
+  }
+}
