@@ -1,0 +1,70 @@
+package companyBot;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.AdjustmentEvent;
+
+public class Umabel extends JFrame {
+	private JTextField txtInput;
+	private JLabel lblOutput;
+
+	public Umabel() {
+		setForeground(new Color(0, 0, 0));
+		getContentPane().setForeground(new Color(0, 0, 0));
+		getContentPane().setLayout(null);
+
+		JLabel lblCompanybot = new JLabel("CompanyBot");
+		lblCompanybot.setBounds(0, 25, 584, 26);
+		lblCompanybot.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblCompanybot.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(lblCompanybot);
+
+		txtInput = new JTextField();
+		txtInput.setBounds(106, 312, 372, 26);
+		getContentPane().add(txtInput);
+		txtInput.setColumns(10);
+
+		lblOutput = new JLabel("");
+		lblOutput.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOutput.setBounds(133, 110, 345, 126);
+		getContentPane().add(lblOutput);
+
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				// insert code for scrolling
+			}
+		});
+		scrollBar.setBounds(106, 110, 17, 126);
+		getContentPane().add(scrollBar);
+
+		JButton btnEnter = new JButton("Enter");
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				evaluateText();
+			}
+		});
+		btnEnter.setBounds(248, 349, 89, 23);
+		getContentPane().add(btnEnter);
+		// size: 600 x 500
+	}
+
+	protected void evaluateText() {
+		String input = txtInput.getText();
+		input = input.toLowerCase();
+		if (input.indexOf("hi") != 1) {
+			lblOutput.setText("Hello");
+		}
+	}
+}
