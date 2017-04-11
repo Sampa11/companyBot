@@ -20,6 +20,7 @@ public class Umabel extends JFrame {
 	private JLabel lblOutput;
 
 	public Umabel() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setForeground(new Color(0, 0, 0));
 		getContentPane().setForeground(new Color(0, 0, 0));
 		getContentPane().setLayout(null);
@@ -31,23 +32,19 @@ public class Umabel extends JFrame {
 		getContentPane().add(lblCompanybot);
 
 		txtInput = new JTextField();
+		txtInput.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				evaluateText();
+			}
+		});
 		txtInput.setBounds(106, 312, 372, 26);
 		getContentPane().add(txtInput);
 		txtInput.setColumns(10);
 
 		lblOutput = new JLabel("");
 		lblOutput.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOutput.setBounds(133, 110, 345, 126);
+		lblOutput.setBounds(120, 108, 345, 126);
 		getContentPane().add(lblOutput);
-
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.addAdjustmentListener(new AdjustmentListener() {
-			public void adjustmentValueChanged(AdjustmentEvent arg0) {
-				// insert code for scrolling
-			}
-		});
-		scrollBar.setBounds(106, 110, 17, 126);
-		getContentPane().add(scrollBar);
 
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
@@ -57,14 +54,36 @@ public class Umabel extends JFrame {
 		});
 		btnEnter.setBounds(248, 349, 89, 23);
 		getContentPane().add(btnEnter);
+
+		JScrollBar scrollBar = new JScrollBar();
+		getContentPane().add(scrollBar);
+		scrollBar.addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+			}
+		});
+		scrollBar.setBounds(120, 108, 17, 126);
 		// size: 600 x 500
 	}
 
 	protected void evaluateText() {
 		String input = txtInput.getText();
 		input = input.toLowerCase();
-		if (input.indexOf("hi") != 1) {
-			lblOutput.setText("Hello");
+
+		// greetings
+		if (input.indexOf("hi") != -1) {
+			lblOutput.setText("<html>" + lblOutput.getText()
+					+ "Hello <br> <html>");
 		}
+		if (input.indexOf("hey") != -1) {
+			lblOutput.setText("<html>" + lblOutput.getText()
+					+ "'Sup? <br> <html>");
+		}
+		if (input.indexOf("hello") != -1) {
+			lblOutput.setText("<html>" + lblOutput.getText()
+					+ "Hello <br> <html>");
+		}
+		txtInput.requestFocus();
+		txtInput.selectAll();
 	}
 }
+
